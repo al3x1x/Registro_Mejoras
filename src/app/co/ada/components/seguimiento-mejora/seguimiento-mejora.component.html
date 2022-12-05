@@ -1,0 +1,178 @@
+<div class="container">
+
+  <h1 style="padding-top: 5%;">Seguimiento de la mejora</h1>
+  <hr style="background-color: white; margin-bottom: 3%;">
+  <div class="card" style="width: 82% !important;">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Título de la mejora</th>
+          <th scope="col">Responsable de la mejora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lista of info">
+          <ng-container *ngIf="lista.id==idParametro">
+            <td>{{lista.id}}</td>
+            <td>{{lista.tituloMejora}}</td>
+        <tr *ngFor="let lista2 of plan" class="d-flex justify-content-center">
+          <ng-container *ngIf="lista2.id==idParametro">
+            <td>{{lista2.responsableMejora}}</td>
+          </ng-container>
+          </ng-container>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <!-- <div class="div" style="background-color: grey; opacity: 0.7;"> -->
+
+
+    <div class="row">
+      <div class="form-group col-md-5">
+        <label for="inputEmail4">Cargo responsable actividad*</label>
+        <input type="text" class="form-control" formControlName="responsable" [class.is-invalid]="responsableInvalid">
+        <span *ngIf="responsableInvalid" class="text-danger">
+          La propuesta no puede estar vacía
+        </span>
+      </div>
+
+      <div class="form-group col-md-5">
+        <label for="inputPassword4">Efectividad de la actividad*</label>
+        <select class="form-select" aria-label="Default select example" formControlName="efectividad"
+          class="form-control" [class.is-invalid]="efectividad">
+          <option selected disabled>Selecciona una opción</option>
+          <option value="SI">Si</option>
+          <option value="NO">No</option>
+
+        </select>
+        <span *ngIf="efectividad" class="text-danger">
+          Debes seleccionar un campo
+        </span>
+      </div>
+    </div>
+
+
+      <div class="card" style="margin-top: 2rem;">
+        <div class="div">
+
+          <h4 style="text-align: center; color: rgb(65, 65, 208); font-size: 1.2rem; padding: 8px;">Actividades</h4>
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#16ba13" style="cursor: pointer;"
+              data-toggle="modal" data-target="#debilidades" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="th">Indice</th>
+              <th class="th">Listado de actvidades</th>
+              <th class="th">Fecha de incio</th>
+              <th class="th">Fecha final</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let actividades of seguimiento; let i=index">
+              <th class="th2">{{i+1}}</th>
+              <th class="th2">{{actividades.listaActividades}}</th>
+              <th class="th2">{{actividades.fechaInicio | date: 'MMM d, y' }}</th>
+              <th class="th2">{{actividades.fechaFinal | date: 'MMM d, y' }}</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="modal fade" id="debilidades" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 60%;">
+          <div class="modal-content">
+            <div class="modal-body">
+      
+              <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Agregar nueva actividad*
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 5%;" width="32" height="32" fill="green"
+                  class="bi bi-plus-square" viewBox="0 0 16 16">
+                  <path
+                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </h3>
+      
+      
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="inputEmail4" style="color: grey;">Fecha de inicio de la actividad*</label>
+                  <input type="date" class="form-control" formControlName="fecha_inicio" [class.is-invalid]="fechaInicioValid" />
+                  <span *ngIf="fechaInicioValid" class="text-danger">
+                    Debes seleccionar una fecha
+                  </span>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputEmail4" style="color: rgb(74, 69, 69);">Fecha de finalización de la actividad*</label>
+                  <input type="date" class="form-control" formControlName="fecha_final" [class.is-invalid]="fechaFinalValid" />
+                  <span *ngIf="fechaFinalValid" class="text-danger">
+                    Debes seleccionar una fecha
+                  </span>
+                </div>
+          
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1" style="color: grey;">Listado de actividades*</label>
+                  <textarea class="form-control" formControlName="listado" rows="4" style="width: 30rem;"
+                    [class.is-invalid]="listadoInvalid"></textarea>
+                  <span *ngIf="listadoInvalid" class="text-danger">
+                    La descripción no puede estar vacía
+                  </span>
+                </div>
+      
+              
+            
+
+            </div>
+          <div class="check">
+            <svg xmlns="http://www.w3.org/2000/svg" data-dismiss="modal" width="32" height="32" fill="green"class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          Añadir
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Comentarios</label>
+      <textarea class="form-control" formControlName="comentarios" rows="3" style="width: 25rem;"
+        [class.is-invalid]="listadoInvalid"></textarea>
+      <span *ngIf="listadoInvalid" class="text-danger">
+        La descripción no puede estar vacía
+      </span>
+    </div>
+
+
+      <label for="inputEmail4" style="margin-top: 1rem;">Ruta de synology o wiki*</label>
+      <input type="text" class="form-control" formControlName="ruta" [class.is-invalid]="rutaInvalid">
+      <span *ngIf="rutaInvalid" class="text-danger">
+        La propuesta no puede estar vacía
+      </span>
+    </div>
+
+
+    <div class="button">
+      <button type="submit" class="btn btn-success">
+        <h4>Guardar datos</h4>
+      </button>
+    </div>
+  </form>
+  <hr style="margin-bottom: 5%;">
+</div>
+
+

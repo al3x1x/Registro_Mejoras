@@ -1,0 +1,291 @@
+<div class="container">
+  <h1>Plan de mejora organizacional</h1>
+  <hr>
+
+
+  <div class="button">
+    <button type="btn" class="btn btn-info" (click)="redirect()">
+      <h5>Ingresar nuevo registro</h5>
+    </button>
+  </div>
+
+  <hr>
+  <!-- <form [formGroup]="form" (ngSubmit)="guardarInfoGeneral()"> -->
+  <!-- <div class="div" style="background-color: grey; opacity: 0.7;"> -->
+  <div class="card">
+
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Título de la mejora</th>
+          <th scope="col">Propuesta por</th>
+          <th scope="col">Proceso asociado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lista of info">
+          <td>{{lista.id}}</td>
+          <td>{{lista.tituloMejora}}</td>
+          <td>{{lista.propuestaPor}}</td>
+          <td>{{lista.procesoAsociado}}</td>
+          <td><svg xmlns="http://www.w3.org/2000/svg" (click)="editar1(lista.id);"  (click)="editar2(lista.id);" data-toggle="modal" data-target="#trackerModal" width="28"
+              height="28" fill="blue" class="bi bi-pencil-square" viewBox="0 0 16 16" style="cursor: pointer;">
+              <path
+                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+              <path fill-rule= "evenodd"
+                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+            </svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- MODAL -->
+<div class="modal fade"   id="trackerModal" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="false">
+  <div class="modal-dialog"   style="min-width: 85%;">
+    <!--Con el min-width manejo el ancho del modal -->
+    <div class="modal-content">
+      <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" style="color: red; opacity: 1; margin-left: 40%;">X</span>
+      </button> -->
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h1>Modificar plan de mejora organizacional</h1>
+          <hr>
+          <div class="card card-modal" >
+            <h4>Editar Información General</h4>
+            <form [formGroup]="form" (submit)="editarInfo(idParametro)">
+              <!-- <div class="div" style="background-color: grey; opacity: 0.7;"> -->
+              <div class="row">
+
+                <div class="form-group col-md-4">
+                  <label for="inputPassword4">Origen de la propuesta*</label>
+                  <select class="form-select" aria-label="Default select example" name="origen_propuesta" formControlName="origen_propuesta"
+                    class="form-control" [class.is-invalid]="origenInvalido" >
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="revisionGenerencial">Revisión Gerencial</option>
+                    <option value="AuditoriasInternas">Resultado de auditorías internas</option>
+                    <option value="AuditoriasExternas">Resultado de auditorías externas</option>
+                    <option value="valoracionInterna">Resultado de valoraciones interna</option>
+                    <option value="valoracionExterna">Resultado de valoraciones externas</option>
+                    <option value="analisisIndicadores">Análisis de indicadores</option>
+                    <option value="leccionesAprendidas">Lecciones aprendidas</option>
+                    <option value="personal">Personal de la organización</option>
+                    <option value="reunionTrimestral">Reunión trimestral de área</option>
+                    <option value="cliente">Cliente</option>
+                  </select>
+                  <span *ngIf="origenInvalido" class="text-danger">
+                    Debes seleccionar un campo
+                  </span>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="inputEmail4">Propuesta por*</label>
+                  <input type="text" class="form-control" formControlName="propuesta_por"
+                    [class.is-invalid]="propuestaInvalida">
+                  <span *ngIf="propuestaInvalida" class="text-danger">
+                    La propuesta no puede estar vacía
+                  </span>
+                </div>
+
+
+
+                <div class="form-group col-md-4">
+                  <label for="inputPassword4">Proceso asociado*</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="proceso_asociado"
+                    class="form-control" [class.is-invalid]="procesoInvalido">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="comercial">Comercial</option>
+                    <option value="ingenieria">Ingeniería</option>
+                    <option value="rrhh">RRHH</option>
+                    <option value="calidad">Calidad</option>
+                    <option value="procesos">Procesos</option>
+                    <option value="servicios">Servicios</option>
+                    <option value="direccionAdministrativa">Dirección Administrativa</option>
+                    <option value="proyecto">Proyecto</option>
+                    <option value="cliente">Cliente</option>
+                  </select>
+                  <span *ngIf="procesoInvalido" class="text-danger">
+                    Debes seleccionar un campo
+                  </span>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="form-group col-md-5">
+                  <label for="inputEmail4">Título de la mejora*</label>
+                  <input type="text" class="form-control" formControlName="titulo_mejora"
+                    [class.is-invalid]="tituloInvalido">
+                  <span *ngIf="tituloInvalido" class="text-danger">
+                    El titulo no puede ser vacío y debe tener menos de 50 carácteres
+                  </span>
+                </div>
+
+                <div class="form-group col-md-5">
+                  <label for="inputPassword4">Herramienta o proceso*</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="herramienta_proceso"
+                    class="form-control" [class.is-invalid]="herramientaInvalida">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="herramienta">Herramienta</option>
+                    <option value="proceso">Proceso</option>
+                  </select>
+                  <span *ngIf="herramientaInvalida" class="text-danger">
+                    Debes seleccionar un campo
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Descripción*</label>
+                <textarea class="form-control" formControlName="descripcion" rows="1"
+                  [class.is-invalid]="descripcionInvalida"></textarea>
+                <span *ngIf="descripcionInvalida" class="text-danger">
+                  La descripción no puede estar vacía
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Mejora que se lograría*</label>
+                <textarea class="form-control" formControlName="mejora_a_lograr" rows="1"
+                  [class.is-invalid]="mejoraInvalida"></textarea>
+                <span *ngIf="mejoraInvalida" class="text-danger">
+                  Este campo no puede estar vacío
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Acciones propuestas*</label>
+                <textarea class="form-control" formControlName="acciones_propuestas" rows="1"
+                  [class.is-invalid]="accionInvalida"></textarea>
+                <span *ngIf="accionInvalida" class="text-danger">
+                  Este campo no puede estar vacío
+                </span>
+              </div>
+              <div class="button" >
+                <button type="submit" class="btn btn-success">
+                  <h5>Guardar cambios</h5>
+                </button>
+              </div>
+            </form>
+          </div>
+
+
+
+          <!-- Evaluación de la mejora -->
+
+
+
+          <div class="card card-modal">
+            <h4><strong>Editar Evaluación de la mejora</strong></h4>
+
+            <form [formGroup]="formEvaluar" (submit)="editarEvaluacion(idParametro)">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Cargo responsable de aprobación*</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="cargo_responsable"
+                    class="form-control" [class.is-invalid]="cargoInvalido">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="lider_mejora">Líder de mejora</option>
+                    <option value="comite_mejora">Comité de mejora</option>
+                    <option value="lider_area">Lider de área</option>
+                    <option value="directivos">Directivos</option>
+                  </select>
+                  <span *ngIf="cargoInvalido" class="text-danger">
+                    Este campo no puede estar vacío
+                  </span>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Evaluación de mejora*</label>
+                  <input type="text" class="form-control" formControlName="evaluacion_mejora"
+                    [class.is-invalid]="evaluacionInvalida">
+                  <span *ngIf="evaluacionInvalida" class="text-danger">
+                    Este campo no puede estar vacío
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-5">
+                  <label for="inputPassword4">Decisión*</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="decision"
+                    class="form-control" [class.is-invalid]="decisionInvalida">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="aprobado">Aprobado</option>
+                    <option value="rechazado">Rechazado</option>
+                  </select>
+                  <span *ngIf="decisionInvalida" class="text-danger">
+                    Este campo no puede estar vacío
+                  </span>
+                </div>
+
+
+
+                <div class="form-group col-md-5">
+                  <label for="inputPassword4">Impacto*</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="impacto"
+                      class="form-control" [class.is-invalid]="impactoInvalido" (change)="evento($event)">
+                      <option selected disabled>Selecciona una opción</option>
+                      <option value="alto">Alto</option>
+                      <option value="medio">Medio</option>
+                      <option value="bajo">Bajo</option>
+                  </select>
+                  <span *ngIf="impactoInvalido" class="text-danger">
+                      Este campo no puede estar vacío
+                  </span>
+              </div>
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Plazo para evaluar la eficacia de la mejora*</label>
+                <input type="text" class="form-control" name="plazo" [(ngModel)]="ngPlazo"  value="{{ngPlazo | titlecase}}" readonly>
+            </div>
+
+              <div class="form-group col-md-5">
+                <label for="inputEmail4">Indicador o herramienta con que se evaluará su eficacia*</label>
+                <input type="text" class="form-control" formControlName="indicador"
+                  [class.is-invalid]="indicadorInvalido">
+                <span *ngIf="indicadorInvalido" class="text-danger">
+                  Este campo no puede estar vacío
+                </span>
+            </div>
+          </div>
+
+              <div class="form-group col-md-5">
+                <label for="inputPassword4">Estado*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="estado"
+                  [class.is-invalid]="estadoInvalido" class="form-control">
+                  <option selected disabled>Selecciona una opción</option>
+                  <option value="planeada">Planeada</option>
+                  <option value="aplazada">Aplazada</option>
+                  <option value="en ejecucion">En ejecución</option>
+                  <option value="cerrada">Cerrada</option>
+
+                </select>
+                <span *ngIf="estadoInvalido" class="text-danger">
+                  Este campo no puede estar vacío
+                </span>
+              </div>
+
+
+              <div class="button" style="margin-bottom: 3%;">
+                <button type="submit" class="btn btn-success">
+                  <h5>Guardar cambios</h5>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

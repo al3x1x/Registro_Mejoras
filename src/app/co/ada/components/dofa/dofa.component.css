@@ -1,0 +1,135 @@
+*{
+    margin-left: auto;
+    margin-right: auto;
+}
+h5{
+    color: rgb(66, 66, 66);
+    text-align: center;
+
+}
+
+.container{
+    margin-top: 2%;
+}
+
+label{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 7%;
+}
+h1{
+    color: white;
+    text-align: center;
+}
+textarea{
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 35rem;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(52, 50, 50) 
+}
+
+
+.boton{
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+}
+
+.button{
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+}
+
+.btn-success{
+    width: 20rem;
+    margin-top: 2%;
+    padding: 5px 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #219b11;
+}
+
+h3{
+    text-align: center;
+}
+.row{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: grey;
+    padding-bottom: 10%;
+}
+
+.btn-success{
+    background-color: #32c42d;
+    width: 15rem;
+    height: 2.4rem;
+    padding-bottom: 2.3rem;
+    color: white;
+}
+.btn-success:hover{
+    background-color: #2b9f1c;
+}
+
+
+.btn-danger{
+    width: 5rem;
+}
+
+.container__btn__cerrar {
+    width: 100%;
+    padding: 1rem 0;
+    margin-left: 55%
+
+}
+
+table{
+    margin-top: 2%;
+
+}
+
+input{
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52) 
+}
+
+thead{
+    box-shadow: 2px 7px 9px 0px rgba(0, 0, 0, 0.172);
+    border-color: rgb(54, 52, 52);
+}
+
+select{
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 2px 2px 2px grey;
+    border-color: grey;
+}
+.table{
+    text-align: center;
+    width: auto;
+}
+
+.card{
+    width: 65%;
+    margin-bottom: 4%;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52); 
+ 
+}
+
+.boton{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+select:hover{
+    cursor: pointer;
+}

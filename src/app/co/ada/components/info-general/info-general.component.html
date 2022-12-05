@@ -1,0 +1,130 @@
+
+<div class="container">
+
+    <h1>Información General</h1>
+    <hr>
+
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+        <!-- <div class="div" style="background-color: grey; opacity: 0.7;"> -->
+        <div class="row">
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Fecha*  </label>
+                <input type="date"  class="form-control" formControlName="fecha_registro" [class.is-invalid]="fechaValid"/>
+                <span *ngIf="fechaValid" class="text-danger">
+                    Debes seleccionar una fecha
+                </span>
+            </div>
+
+
+            <div class="form-group col-md-5">
+                <label for="inputPassword4">Origen de la propuesta*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="origen_propuesta"
+                    class="form-control" [class.is-invalid]="origenInvalido">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="revisionGenerencial">Revisión Gerencial</option>
+                    <option value="AuditoriasInternas">Resultado de auditorías internas</option>
+                    <option value="AuditoriasExternas">Resultado de auditorías externas</option>
+                    <option value="valoracionInterna">Resultado de valoraciones interna</option>
+                    <option value="valoracionExterna">Resultado de valoraciones externas</option>
+                    <option value="analisisIndicadores">Análisis de indicadores</option>
+                    <option value="leccionesAprendidas">Lecciones aprendidas</option>
+                    <option value="personal">Personal de la organización</option>
+                    <option value="reunionTrimestral">Reunión trimestral de área</option>
+                    <option value="cliente">Cliente</option>
+                </select>
+                <span *ngIf="origenInvalido" class="text-danger">
+                    Debes seleccionar un campo
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Propuesta por*</label>
+                <input type="text" class="form-control" formControlName="propuesta_por" [class.is-invalid]="propuestaInvalida">
+            <span *ngIf="propuestaInvalida" class="text-danger">
+                La propuesta no puede estar vacía
+            </span>
+
+            </div>
+
+
+
+
+            <div class="form-group col-md-5">
+                <label for="inputPassword4">Proceso asociado*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="proceso_asociado" 
+                    class="form-control" [class.is-invalid]="procesoInvalido">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="comercial">Comercial</option>
+                    <option value="ingenieria">Ingeniería</option>
+                    <option value="rrhh">RRHH</option>
+                    <option value="calidad">Calidad</option>
+                    <option value="procesos">Procesos</option>
+                    <option value="servicios">Servicios</option>
+                    <option value="direccionAdministrativa">Dirección Administrativa</option>
+                    <option value="proyecto">Proyecto</option>
+                    <option value="cliente">Cliente</option>
+                </select>
+                <span *ngIf="procesoInvalido" class="text-danger">
+                    Debes seleccionar un campo
+                </span>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Título de la mejora*  <strong>(Máximo 50 carácteres)</strong></label>
+                <input type="text" class="form-control" formControlName="titulo_mejora" [class.is-invalid]="tituloInvalido">
+                <span *ngIf="tituloInvalido" class="text-danger">
+                    El titulo no puede ser vacío y debe tener menos de 50 carácteres
+                </span>
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="inputPassword4">Herramienta o proceso*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="herramienta_proceso"
+                    class="form-control" [class.is-invalid]="herramientaInvalida">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="herramienta">Herramienta</option>
+                    <option value="proceso">Proceso</option>
+                </select>
+                <span *ngIf="herramientaInvalida" class="text-danger">
+                    Debes seleccionar un campo
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Descripción*</label>
+            <textarea class="form-control" formControlName="descripcion" rows="2" [class.is-invalid]="descripcionInvalida"></textarea>
+            <span *ngIf="descripcionInvalida" class="text-danger">
+                La descripción no puede estar vacía
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Mejora que se lograría*</label>
+            <textarea class="form-control" formControlName="mejora_a_lograr" rows="2"  [class.is-invalid]="mejoraInvalida"></textarea>
+            <span *ngIf="mejoraInvalida" class="text-danger">
+                Este campo no puede estar vacío
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Acciones propuestas*</label>
+            <textarea class="form-control" formControlName="acciones_propuestas" rows="2" [class.is-invalid]="accionInvalida"></textarea>
+            <span *ngIf="accionInvalida" class="text-danger">
+                Este campo no puede estar vacío
+            </span>
+        </div>
+
+        <div class="button">
+            <button type="submit" class="btn btn-success">
+                <h5>Siguiente</h5>
+            </button>
+        </div>
+    </form>
+    <hr style="margin-bottom: 5%;">
+</div>

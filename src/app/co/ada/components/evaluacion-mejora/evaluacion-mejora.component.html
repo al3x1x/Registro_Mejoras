@@ -1,0 +1,106 @@
+<div class="container">
+
+    <h1>Evaluación de la mejora</h1>
+    <hr style="background-color: white;">
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+        <div class="row">
+            <div class="form-group col-md-5">
+                <label for="inputPassword4">Cargo responsable de aprobación*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="cargo_responsable"
+                    class="form-control" [class.is-invalid]="cargoInvalido">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="lider_mejora">Líder de mejora</option>
+                    <option value="comite_mejora">Comité de mejora</option>
+                    <option value="lider_area">Lider de área</option>
+                    <option value="directivos">Directivos</option>
+                </select>
+                <span *ngIf="cargoInvalido" class="text-danger">
+                    Este campo no puede estar vacío 
+                </span>
+            </div>
+
+
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Evaluación de mejora*</label>
+                <input type="text" class="form-control" formControlName="evaluacion_mejora"
+                    [class.is-invalid]="evaluacionInvalida">
+                <span *ngIf="evaluacionInvalida" class="text-danger">
+                    Este campo no puede estar vacío
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-5">
+                <label for="inputPassword4">Decisión*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="decision"
+                    class="form-control" [class.is-invalid]="decisionInvalida" (change)="decision($event)">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="aprobado">Aprobado</option>
+                    <option value="rechazado">Rechazado</option>
+                </select>
+                <span *ngIf="decisionInvalida" class="text-danger">
+                    Este campo no puede estar vacío
+                </span>
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="inputPassword4">Impacto*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="impacto"
+                    class="form-control" [class.is-invalid]="impactoInvalido" (change)="evento($event)">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="alto">Alto</option>
+                    <option value="medio">Medio</option>
+                    <option value="bajo">Bajo</option>
+                </select>
+                <span *ngIf="impactoInvalido" class="text-danger">
+                    Este campo no puede estar vacío
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-5">
+                <label for="inputPassword4" >Estado*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="estado"
+                    [class.is-invalid]="estadoInvalido" class="form-control">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="planeada">Planeada</option>
+                    <option value="aplazada">Aplazada</option>
+                    <option value="en ejecucion">En ejecución</option>
+                    <option value="cerrada">Cerrada</option>
+
+                </select>
+                <span *ngIf="estadoInvalido" class="text-danger">
+                    Este campo no puede estar vacío
+                </span>
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Plazo para evaluar la eficacia de la mejora*</label>
+                <input type="text" class="form-control" name="plazo" [(ngModel)]="ngPlazo"  value="{{ngPlazo | titlecase}}" readonly>
+                <!-- <select class="form-select" aria-label="Default select example" formControlName="plazo"
+                    [class.is-invalid]="estadoInvalido" class="form-control">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="{{plazo}}">{{plazo}}</option>
+                </select> -->
+            </div>
+        </div>
+
+        <div class="form-group col-md-5">
+            <label for="inputEmail4">Indicador o herramienta con que se evaluará su eficacia*</label>
+            <input type="text" class="form-control" formControlName="indicador" [class.is-invalid]="indicadorInvalido">
+            <span *ngIf="indicadorInvalido" class="text-danger">
+                Este campo no puede estar vacío
+            </span>
+        </div>
+
+
+        
+        <div class="button" style="margin-bottom: 3%;">
+            <button type="submit" class="btn btn-success">
+                <h5>Guardar</h5>
+            </button>
+        </div>
+    </form>
+    <hr style="margin-bottom: 5%;">

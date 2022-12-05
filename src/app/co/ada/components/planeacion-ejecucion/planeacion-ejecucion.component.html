@@ -1,0 +1,113 @@
+<div class="container">
+
+    <h1>Planeación y ejecución</h1>
+    <hr>
+    <!-- (ngSubmit)="guardarInfoGeneral()" -->
+    <form [formGroup]="form" (submit)="guardar();">
+        <!-- <div class="div" style="background-color: grey; opacity: 0.7;"> -->
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Título de la mejora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let lista of info">
+                        <ng-container *ngIf="lista.id==idParametro">
+                            <td>{{lista.id}}</td>
+                            <td>{{lista.tituloMejora}}</td>
+                        </ng-container>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6" style="margin-bottom: 2.5%;">
+                <label for="inputEmail4">Cargo responsable de la mejora*</label>
+                <input type="text" class="form-control" formControlName="responsable_mejora"
+                    [class.is-invalid]="responsableInvalid">
+                <span *ngIf="responsableInvalid" class="text-danger">
+                    Este campo no puede quedar vacío
+                </span>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 2.5%;">
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Fecha de inicio*</label>
+                <input type="date" class="form-control" formControlName="fecha_inicio"
+                    [class.is-invalid]="fechaInicioInvalid">
+                <span *ngIf="fechaInicioInvalid" class="text-danger">
+                    Debes seleccionar una fecha incial
+                </span>
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="inputEmail4">Fecha final de la propuesta*</label>
+                <input type="date" class="form-control" formControlName="fecha_final"
+                    [class.is-invalid]="fechaFinalInvalid">
+                <span *ngIf="fechaFinalInvalid" class="text-danger">
+                    Debes seleccionar una fecha final
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Estrategia de implementación*</label>
+            <textarea class="form-control" formControlName="estrategia" rows="2"
+                [class.is-invalid]="estrategiaInvalido"></textarea>
+            <span *ngIf="estrategiaInvalido" class="text-danger" style="margin-left: 10%">
+                Este campo no puede quedar vacío
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Recursos necesarios*</label>
+            <textarea class="form-control" formControlName="recursos" rows="2"
+                [class.is-invalid]="recursosInvalid"></textarea>
+            <span *ngIf="recursosInvalid" class="text-danger" style="margin-left: 10%">
+                Este campo no puede quedar vacío
+            </span>
+        </div>
+        <div class="form-group" style="margin-bottom: 2.5%;">
+            <label for="exampleFormControlTextarea1">Entregables*</label>
+            <textarea class="form-control" formControlName="entregables" rows="2"
+                [class.is-invalid]="entregablesInvalid"></textarea>
+            <span *ngIf="entregablesInvalid" class="text-danger" style="margin-left: 10%">
+                Este campo no puede quedar vacío
+            </span>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group col-md-8" style="margin-bottom: 4%;">
+                <label for="inputEmail4">Ruta de synology o wiki</label>
+                <input type="text" class="form-control" formControlName="ruta">
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="inputPassword4">Require Evaluación de Riesgos (Matriz DOFA)*</label>
+            <select class="form-select" aria-label="Default select example" formControlName="dofa" class="form-control"
+                [class.is-invalid]="dofaInvalid" (change)="evento($event)">
+                <option selected disabled>Selecciona una opción</option>
+                <option value="SI">Si</option>
+                <option value="NO">No</option>
+            </select>
+            <span *ngIf="dofaInvalid" class="text-danger">
+                Debes seleccionar un campo
+            </span>
+        </div>
+
+        <div class="button">
+            <button type="submit" class="btn btn-success">
+                <h5>Guardar</h5>
+            </button>
+        </div>
+    </form>
+    <hr style="margin-bottom: 5%;">
+
+</div>

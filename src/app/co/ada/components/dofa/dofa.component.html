@@ -1,0 +1,694 @@
+  <div class="container">
+
+    <h1>DOFA</h1>
+    <hr style="background-color: white;">
+    <div class="card" style="width: 82% !important;">
+
+      <table class="table">
+        <thead style="box-shadow: 1px 1px 1px 1px white;">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Título de la mejora</th>
+            <th scope="col">Responsable de la mejora</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lista of info">
+            <ng-container *ngIf="lista.id==idParametro">
+              <td>{{lista.id}}</td>
+              <td>{{lista.tituloMejora}}</td>
+          <tr *ngFor="let lista2 of plan" class="d-flex justify-content-center">
+            <ng-container *ngIf="lista2.id==idParametro">
+              <td>{{lista2.responsableMejora}}</td>
+            </ng-container>
+            </ng-container>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+  <!-- TABLA #2 -->
+
+
+
+    <table class="table" style="width: 100%; background-color: white; border-radius: 8px;">
+      <thead>
+        <tr>
+          <th scope="col">Num</th>
+          <th scope="col">Debilidades</th>
+          <th scope="col">Calificación</th>
+          <th></th>
+          <th></th>
+          <th>Acciones</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th scope="col">
+            <svg xmlns="http://www.w3.org/2000/svg" (click)="limpiarCampos()" width="32" height="32" fill="#16ba13" style="cursor: pointer;"
+              data-toggle="modal" data-target="#debilidades" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <tr *ngFor="let lista of debilidades let i=index">
+          <ng-container >
+            <td>{{i+1}}</td>
+            <td>{{lista.debilidades}}</td>
+            <td>{{lista.calDebilidades}}</td>
+            <td></td>
+            <td></td>
+
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="editar1(lista.id)"  data-toggle="modal"
+                data-target="#editarDebilidad" width="28" height="28" fill="blue" class="bi bi-pencil-square"
+                viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg>
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="eliminar(lista.id)" width="28" height="28" fill="red"
+                class="bi bi-trash3-fill" viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+              </svg>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+
+      <!-- MODAL  DEBILIDADES GUARDAR-->
+
+      <div class="modal fade" id="debilidades" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 60%;">
+          <div class="modal-content">
+            <div class="modal-body">
+
+              <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Agregar nueva debilidad
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 5%;" width="32" height="32" fill="green"
+                  class="bi bi-plus-square" viewBox="0 0 16 16">
+                  <path
+                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </h3>
+
+              <form [formGroup]="form" (submit)="guardar(); ">
+
+                <div class="col" style="margin-top: 5%;">
+                  <h5>Digita una debilidad*</h5>
+                  <textarea class="form-control" formControlName="debilidades" rows="3"
+                    [class.is-invalid]=""></textarea>
+                  <span *ngIf="" class="text-danger">
+                    Este campo no puede quedar vacío
+                  </span>
+                </div>
+
+                <div class="col-md-6" style="margin-top: 5%;">
+                  <label for="">
+                    <h5>Asigna una calificación*</h5>
+                  </label>
+                  <select class="form-select" aria-label="Default select example" formControlName="calDebilidades"
+                    class="form-control" [class.is-invalid]="">
+                    <option selected disabled>
+                      <h5>Selecciona una opción</h5>
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <span *ngIf="" class="text-danger">
+                    Debes seleccionar un campo
+                  </span>
+                </div>
+                <div class="boton">
+                  <button type="submit" class="btn btn-success" >
+                    <h4>Guardar</h4>
+                  </button>
+                </div>
+              </form>
+              <div class="container__btn__cerrar">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 75;">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ***************************************************************************** -->
+
+      <!-- MODAL  DEBILIDADES EDITAR-->
+      <div class="modal fade" id="editarDebilidad" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 60%;">
+          <div class="modal-content">
+            <div class="modal-body">
+
+              <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Modificar columna de debilidades
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="blue" class="bi bi-pencil-square"
+                  viewBox="0 0 16 16" style="cursor: pointer;">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg>
+              </h3>
+
+              <form [formGroup]="form"  (submit)="editar(id);">
+
+                <div class="col" style="margin-top: 5%;">
+                  <h5>Editar debilidad*</h5>
+                  <textarea class="form-control" formControlName="debilidades" rows="3"></textarea>
+                </div>
+
+                <div class="col-md-6" style="margin-top: 5%;">
+                  <label for="">
+                    <h5>Edita la calificación*</h5>
+                  </label>
+                  <select class="form-select" aria-label="Default select example" formControlName="calDebilidades"
+                    class="form-control">
+                    <option selected disabled>
+                      <h5>Selecciona una opción</h5>
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <div class="boton">
+                  <button type="submit" class="btn btn-success">
+                    <h4>Guardar</h4>
+                  </button>
+                </div>
+              </form>
+              <div class="container__btn__cerrar">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 75;">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <thead>
+        <tr>
+          <th scope="col">Num</th>
+          <th scope="col">Oportunidades</th>
+          <th scope="col">Calificación</th>
+          <th></th>
+          <th></th>
+          <th>Acciones</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th scope="col">
+            <svg xmlns="http://www.w3.org/2000/svg"  (click)="limpiarCampos()" data-toggle="modal" data-target="#oportunidades" width="32"
+              height="32" fill="#16ba13" style="cursor: pointer;" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <tr *ngFor="let lista of oportunidades; let i=index">
+          <ng-container>
+            <td>{{i+1}}</td>
+            <td>{{lista.oportunidades}}</td>
+            <td>{{lista.calOportunidades}}</td>
+            <td></td>
+            <td></td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="editar1(lista.id)" data-toggle="modal" data-target="#editarOportunidad" width="28"
+                height="28" fill="blue" class="bi bi-pencil-square" viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg>
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="eliminar(lista.id)" width="28" height="28" fill="red"
+                class="bi bi-trash3-fill" viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+              </svg>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+
+
+      <!-- MODAL  OPORTUNIDADES-->
+
+      <div class="modal fade" id="oportunidades" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 60%;">
+          <div class="modal-content">
+            <div class="modal-body">
+
+              <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Agregar nueva oportunidad
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 5%;" width="32" height="32" fill="green"
+                  class="bi bi-plus-square" viewBox="0 0 16 16">
+                  <path
+                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </h3>
+
+              <form [formGroup]="form" (submit)="guardar();">
+                <div class="col" style="margin-top: 5%;">
+                  <h5>Digita una oportunidad*</h5>
+                  <textarea class="form-control" formControlName="oportunidades" rows="3"></textarea>
+
+                </div>
+
+                <div class="col-md-6" style="margin-top: 5%;">
+                  <label for="">
+                    <h5>Asigna una calificación*</h5>
+                  </label>
+                  <select class="form-select" aria-label="Default select example" formControlName="calOportunidades"
+                    class="form-control">
+                    <option selected disabled>
+                      <h5>Selecciona una opción</h5>
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <div class="boton">
+                  <button type="submit" class="btn btn-success">
+                    <h4>Guardar</h4>
+                  </button>
+                </div>
+              </form>
+              <div class="container__btn__cerrar">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 75;">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- MODAL  OPORTUNIDADES EDITAR-->
+      <div class="modal fade" id="editarOportunidad" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 60%;">
+          <div class="modal-content">
+            <div class="modal-body">
+
+              <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Modificar columnas de oportunidades
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="blue" class="bi bi-pencil-square"
+                  viewBox="0 0 16 16" style="cursor: pointer;">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg>
+              </h3>
+
+              <form [formGroup]="form" (submit)="editar(id);">
+
+                <div class="col" style="margin-top: 5%;">
+                  <h5>Editar oportunidad*</h5>
+                  <textarea class="form-control" formControlName="oportunidades" rows="3"></textarea>
+                </div>
+
+                <div class="col-md-6" style="margin-top: 5%;">
+                  <label for="">
+                    <h5>Edita la calificación*</h5>
+                  </label>
+                  <select class="form-select" aria-label="Default select example" formControlName="calOportunidades"
+                    class="form-control">
+                    <option selected disabled>
+                      <h5>Selecciona una opción</h5>
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <div class="boton">
+                  <button type="submit" class="btn btn-success">
+                    <h4>Guardar</h4>
+                  </button>
+                </div>
+              </form>
+              <div class="container__btn__cerrar">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 75;">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <-------*****************************************************************> -->
+
+
+      <thead>
+        <tr>
+          <th scope="col">Num</th>
+          <th scope="col">Fortalezas</th>
+          <th scope="col">Calificación</th>
+          <th></th>
+          <th></th>
+          <th>Acciones</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th scope="col">
+            <svg xmlns="http://www.w3.org/2000/svg"  (click)="limpiarCampos()" width="32" height="32" fill="#16ba13" style="cursor: pointer;"
+              data-toggle="modal" data-target="#fortalezas" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <tr *ngFor="let lista of fortalezas; let i=index">
+          <ng-container>
+            <td>{{i+1}}</td>
+            <td>{{lista.fortalezas}}</td>
+            <td>{{lista.calFortalezas}}</td>
+            <td></td>
+            <td></td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="editar1(lista.id)" data-toggle="modal" data-target="#editarFortaleza" width="28"
+                height="28" fill="blue" class="bi bi-pencil-square" viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg>
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="eliminar(lista.id)" width="28" height="28" fill="red"
+                class="bi bi-trash3-fill" viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+              </svg>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+
+      <!-- MODAL  FORTALEZAS-->
+
+      <div class="modal fade" id="fortalezas" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 60%;">
+          <div class="modal-content">
+            <div class="modal-body">
+
+              <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Agregar nueva fortaleza
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 5%;" width="32" height="32" fill="green"
+                  class="bi bi-plus-square" viewBox="0 0 16 16">
+                  <path
+                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </h3>
+
+              <form [formGroup]="form" (submit)="guardar();">
+
+                <div class="col" style="margin-top: 5%;">
+                  <h5>Digita una fortaleza*</h5>
+                  <textarea class="form-control" formControlName="fortalezas" rows="3"></textarea>
+                </div>
+
+                <div class="col-md-6" style="margin-top: 5%;">
+                  <label for="">
+                    <h5>Asigna una calificación*</h5>
+                  </label>
+                  <select class="form-select" aria-label="Default select example" formControlName="calFortalezas"
+                    class="form-control">
+                    <option selected disabled>
+                      <h5>Selecciona una opción</h5>
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <div class="boton">
+                  <button type="submit" class="btn btn-success">
+                    <h4>Guardar</h4>
+                  </button>
+                </div>
+              </form>
+              <div class="container__btn__cerrar">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 75;">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- MODAL  FORTALEZAS EDITAR-->
+      <div class="modal fade" id="editarFortaleza" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 60%;">
+          <div class="modal-content">
+            <div class="modal-body">
+
+              <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Modificar columna de fortalezas
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="blue" class="bi bi-pencil-square"
+                  viewBox="0 0 16 16" style="cursor: pointer;">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg>
+              </h3>
+
+              <form [formGroup]="form"  (submit)="editar(id);">
+
+                <div class="col" style="margin-top: 5%;">
+                  <h5>Editar fortaleza*</h5>
+                  <textarea class="form-control" formControlName="fortalezas" rows="3"></textarea>
+                </div>
+
+                <div class="col-md-6" style="margin-top: 5%;">
+                  <label for="">
+                    <h5>Edita la calificación*</h5>
+                  </label>
+                  <select class="form-select" aria-label="Default select example" formControlName="calFortalezas"
+                    class="form-control">
+                    <option selected disabled>
+                      <h5>Selecciona una opción</h5>
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <div class="boton">
+                  <button type="submit" class="btn btn-success">
+                    <h4>Guardar</h4>
+                  </button>
+                </div>
+              </form>
+              <div class="container__btn__cerrar">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 75;">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <-------*****************************************************************> -->
+
+      <thead>
+        <tr>
+          <th scope="col">Num</th>
+          <th scope="col">Amenazas</th>
+          <th scope="col">Calificación</th>
+          <th></th>
+          <th></th>
+          <th>Acciones</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th scope="col">
+            <svg xmlns="http://www.w3.org/2000/svg"  (click)="limpiarCampos()" data-toggle="modal" data-target="#amenaza" width="32" height="32"
+              fill="#16ba13" style="cursor: pointer;" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <tr *ngFor="let lista of amenazas; let i=index">
+          <ng-container>
+            <td>{{i+1}}</td>
+            <td>{{lista.amenazas}}</td>
+            <td>{{lista.calAmenazas}}</td>
+            <td></td>
+            <td></td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="editar1(lista.id)" data-toggle="modal" data-target="#editarAmenazas" width="28"
+                height="28" fill="blue" class="bi bi-pencil-square" viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg>
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="eliminar(lista.id)" width="28" height="28" fill="red"
+                class="bi bi-trash3-fill" viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+              </svg>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- MODAL  AMENAZAS-->
+
+    <div class="modal fade" id="amenaza" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+      <div class="modal-dialog" style="min-width: 60%;">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Agregar nueva amenaza
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 5%;" width="32" height="32" fill="green"
+                class="bi bi-plus-square" viewBox="0 0 16 16">
+                <path
+                  d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+              </svg>
+            </h3>
+
+            <form [formGroup]="form" (submit)="guardar();">
+
+              <div class="col" style="margin-top: 5%;">
+                <h5>Digita una amenza*</h5>
+                <textarea class="form-control" formControlName="amenazas" rows="3"></textarea>
+              </div>
+
+              <div class="col-md-6" style="margin-top: 5%;">
+                <label for="">
+                  <h5>Asigna una calificación*</h5>
+                </label>
+                <select class="form-select" aria-label="Default select example" formControlName="calAmenazas"
+                  class="form-control">
+                  <option selected disabled>
+                    <h5>Selecciona una opción</h5>
+                  </option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <div class="boton">
+                <button type="submit" class="btn btn-success">
+                  <h4>Guardar</h4>
+                </button>
+              </div>
+            </form>
+            <div class="container__btn__cerrar">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 35%;">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- MODAL  AMENAZAS EDITAR-->
+    <div class="modal fade" id="editarAmenazas" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="true">
+      <div class="modal-dialog" style="min-width: 60%;">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <h3 style="margin-top: 5%; color: rgb(68, 65, 65); ">Modificar columna de amenazas
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="blue" class="bi bi-pencil-square"
+                viewBox="0 0 16 16" style="cursor: pointer;">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg>
+            </h3>
+
+            <form [formGroup]="form"  (submit)="editar(id);">
+
+              <div class="col" style="margin-top: 5%;">
+                <h5>Editar amenaza*</h5>
+                <textarea class="form-control" formControlName="amenazas" rows="3"></textarea>
+              </div>
+
+              <div class="col-md-6" style="margin-top: 5%;">
+                <label for="">
+                  <h5>Edita la calificación*</h5>
+                </label>
+                <select class="form-select" aria-label="Default select example" formControlName="calAmenazas"
+                  class="form-control">
+                  <option selected disabled>
+                    <h5>Selecciona una opción</h5>
+                  </option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <div class="boton">
+                <button type="submit" class="btn btn-success">
+                  <h4>Guardar</h4>
+                </button>
+              </div>
+            </form>
+            <div class="container__btn__cerrar">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 35%;">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  <div class="button"  style="margin-top: 3%; padding-bottom: 5%;">
+    <button type="submit" class="btn btn-success" (click)="redirect()">
+      <h4>Siguiente</h4>
+    </button>
+  </div>
+  <hr>
+
+</div>

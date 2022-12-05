@@ -1,0 +1,182 @@
+<div class="container">
+  <h1>Evaluación de la implementación</h1>
+  <hr style="background-color: white; width:75%">
+  <div class="card">
+
+    <table class="table">
+      <thead style="box-shadow: 1px 1px 1px 1px white;">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Título de la mejora</th>
+          <th scope="col">Cargo Responsable de la mejora</th>
+          <th scope="col">Estado final</th>
+          <th scope="col">Efectividad</th>
+          <th scope="col">Ver detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lista of evaluacionImpl"> 
+          <td>{{lista.id}}</td>
+          <ng-container *ngFor="let lista2 of info">
+            <td *ngIf="lista2.id==lista.id">{{lista2.tituloMejora}}</td>
+          </ng-container>
+          <ng-container *ngFor="let lista3 of plan">
+            <td *ngIf="lista3.id==lista.id">{{lista3.responsableMejora}}</td>
+          </ng-container>
+          <td>{{lista.estadoFinal}}</td>
+          <td>{{lista.efectividad}}%</td>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#trackerModal" (click)="capturarId(lista.id)"
+              style="cursor: pointer;" width="30" height="30" fill="blue" class="bi bi-eye-fill" viewBox="0 0 16 16">
+              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+            </svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <!-- MODAL -->
+  <div class="modal fade" id="trackerModal" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="false">
+    <div class="modal-dialog" style="min-width: 70%;">
+      <div class="modal-content" style="background-color: rgb(189, 181, 181)">
+
+        <div class="modal-body">
+          <div>
+            <h1 style="text-align: center;">Detalle de evaluación de la implementación</h1>
+            <hr>
+
+            <div class="lista" *ngFor="let lista of detalleId">
+             
+              <div class="card">
+              <div *ngFor="let titulo of info">
+                <h4 *ngIf="lista.id==titulo.id" style="color: rgb(28, 98, 248); text-align: center; margin-bottom: 3%">{{titulo.tituloMejora}}
+                </h4>
+              </div>
+            </div>
+
+
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                <div class="col-md-5">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Id</h5>
+                      <p class="card-text" style="padding-top: 1rem;">{{lista.id}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5" >
+                  <div class="card personalizar">
+                    <div class="card-body" >
+                      <h5 class="card-title">Cargo responsable</h5>
+                      <p class="card-text" *ngFor="let lista3 of plan">{{lista3.responsableMejora}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Fecha de seguimiento</h5>
+                      <p class="card-text">{{lista.fechaSeguimiento | date: 'MMM d, y' }}</p>
+                    </div>  
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Fecha de inicio</h5>
+                      <p class="card-text">{{lista.fechaInicioMejora | date: 'MMM d, y' }}</p>
+                    </div>  
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Fecha de cierre</h5>
+                      <p class="card-text">{{lista.fechaCierreMejora | date: 'MMM d, y' }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Aplica eficacia</h5>
+                      <p class="card-text">{{lista.aplica}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Estado final</h5>
+                      <p class="card-text">{{lista.estadoFinal}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Impacto económico</h5>
+                      <p class="card-text">{{lista.impacto | number }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Objetivo de la mejora</h5>
+                      <p class="card-text">{{lista.objetivoMejora}}%</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Resultado</h5>
+                      <p class="card-text">{{lista.resultado}}%</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Efectividad</h5>
+                      <p class="card-text">{{lista.efectividad}}%</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card personalizar">
+                  <div class="card-body">
+                    <h5 class="card-title">Observaciones</h5>
+                    <p class="card-text">{{lista.observaciones}}</p>
+                  </div>
+                </div>
+              </div>
+               
+              <hr>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+  </div>
+  <hr style="margin-bottom: 5%;">
+</div> 

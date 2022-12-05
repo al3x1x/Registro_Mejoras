@@ -1,0 +1,153 @@
+<div class="container">
+  <h1>Planeación y ejecución</h1>
+  <hr style="background-color: white; width:75%">
+  <div class="card">
+
+    <table class="table">
+      <thead style="box-shadow: 1px 1px 1px 1px white;">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Título de la mejora</th>
+          <th scope="col">Responsable</th>
+          <th scope="col">Estrategia de implementación</th>
+          <th scope="col">Ver detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lista of plan">
+          <td>{{lista.id}}</td>
+          <ng-container *ngFor="let lista2 of info">
+            <td *ngIf="lista2.id==lista.id">{{lista2.tituloMejora}}</td>
+          </ng-container>
+          <td>{{lista.responsableMejora}}</td>
+          <td>{{lista.estrategiaImpl}}</td>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" data-toggle="modal" data-target="#trackerModal" (click)="capturarId(lista.id)"
+              style="cursor: pointer;" width="30" height="30" fill="blue" class="bi bi-eye-fill" viewBox="0 0 16 16">
+              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+            </svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+  <!-- MODAL -->
+  <div class="modal fade" id="trackerModal" tabindex="-1" aria-labelledby="nuevoProyecto" aria-hidden="false">
+    <div class="modal-dialog" style="min-width: 85%;">
+      <!--Con el min-width manejo el ancho del modal -->
+      <div class="modal-content" style="background-color: rgb(189, 181, 181)">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="color: red; opacity: 1; margin-left: 40%;">X</span>
+        </button> -->
+        <div class="modal-body">
+          <div>
+            <h1 style="text-align: center;">Detalle de planeación y ejecución</h1>
+            <hr>
+
+            <div class="lista" *ngFor="let lista of detalleId ">
+             
+             <div class="card">
+              <div *ngFor="let titulo of info">
+                <h4 *ngIf="lista.id==titulo.id" style="color: rgb(28, 98, 248); text-align: center; margin-bottom: 3%">{{titulo.tituloMejora}}
+                </h4>
+              </div>
+            </div>
+            
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Id</h5>
+                      <p class="card-text">{{lista.id}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Responsable de la mejora</h5>
+                      <p class="card-text">{{lista.responsableMejora}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Estrategia de implementación</h5>
+                      <p class="card-text">{{lista.estrategiaImpl}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Fecha de inicio</h5>
+                      <p class="card-text">{{lista.fechaInicio | date: 'MMM d, y' }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Fecha final</h5>
+                      <p class="card-text">{{lista.fechaFin | date: 'MMM d, y' }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Requiere matriz DOFA</h5>
+                      <p class="card-text">{{lista.matrizDofa}}</p>
+                    </div>
+                </div>
+              </div>
+     
+
+              </div>
+              <div class="col">
+                <div class="card personalizar">
+                  <div class="card-body">
+                    <h5 class="card-title">Entregables</h5>
+                    <p class="card-text">{{lista.entregables}}</p>
+                  </div>
+                </div>
+              </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Recursos necesarios</h5>
+                      <p class="card-text">{{lista.recursosNecesarios}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card personalizar">
+                    <div class="card-body">
+                      <h5 class="card-title">Ruta de Synology</h5>
+                      <p class="card-text">{{lista.relacionSynology}}</p>
+                    </div>
+                  </div>
+                </div>
+               
+              <hr>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+  </div>
+  <hr style="margin-bottom: 5%;">
+</div>

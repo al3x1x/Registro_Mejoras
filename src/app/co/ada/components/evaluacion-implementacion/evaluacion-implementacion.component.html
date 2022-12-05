@@ -1,0 +1,169 @@
+<div class="container">
+
+    <h1>Evaluación de la implementación</h1>
+    <hr style="background-color: white; margin-bottom: 3%;">
+    <div class="card" style="width: 82% !important;">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Título de la mejora</th>
+                    <th scope="col">Responsable de la mejora</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lista of info">
+                    <ng-container *ngIf="lista.id==idParametro">
+                        <td>{{lista.id}}</td>
+                        <td>{{lista.tituloMejora}}</td>
+                <tr *ngFor="let lista2 of plan" class="d-flex justify-content-center">
+                    <ng-container *ngIf="lista2.id==idParametro">
+                        <td>{{lista2.responsableMejora}}</td>
+                    </ng-container>
+                    </ng-container>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <form [formGroup]="form" (submit)="guardar()">
+        <!-- <div class="div" style="background-color: grey; opacity: 0.7;"> -->
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Fecha de seguimiento*</label>
+                <input type="date" class="form-control" formControlName="fecha_seguimiento"
+                    [class.is-invalid]="fechaSeguimientoValid" />
+                <span *ngIf="fechaSeguimientoValid" class="text-danger">
+                    Debes seleccionar una fecha
+                </span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Fecha de inicio de la mejora*</label>
+                <input type="date" class="form-control" formControlName="fecha_inicio"
+                    [class.is-invalid]="fechaInicioValid" />
+                <span *ngIf="fechaInicioValid" class="text-danger">
+                    Debes seleccionar una fecha
+                </span>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Fecha de cierre de la mejora*</label>
+                <input type="date" class="form-control" formControlName="fecha_final"
+                    [class.is-invalid]="fechaFinalValid" />
+                <span *ngIf="fechaFinalValid" class="text-danger">
+                    Debes seleccionar una fecha
+                </span>
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="inputPassword4">Aplica eficacia*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="eficacia"
+                    class="form-control" [class.is-invalid]="eficaciaInvalid" (change)="aplica($event)">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="aplica">Aplica</option>
+                    <option value="No aplica">No aplica</option>
+
+                </select>
+                <span *ngIf="eficaciaInvalid" class="text-danger">
+                    Este campo no puede estar vacío
+                </span>
+            </div>
+        </div>
+
+        <div class="div" *ngIf="aplicaEficacia===true">
+            <div class="row">
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Objetivo de la mejora</label>
+                <input type="number" class="form-control" formControlName="objetivo">
+
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Resultado</label>
+                <input type="number" class="form-control" formControlName="resultado">
+
+            </div>
+        </div>
+
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputEmail4">Efectividad de la mejora*</label>
+            <input type="number" class="form-control" formControlName="efectividad"
+                [class.is-invalid]="efectividadInvalid">
+            <span *ngIf="efectividadInvalid" class="text-danger">
+                Este campo no puede estar vacío
+            </span>
+        </div>
+    
+        <div class="row">
+        <div class="form-group col-md-5">
+            <label for="exampleFormControlTextarea1">Impacto económico de no implementar la mejora*</label>
+            <input type="number" class="form-control" formControlName="impacto" [class.is-invalid]="impactoInvalid"
+                placeholder="(Ingresa números sin comas ni puntos)" (change)="roi($event)">
+            <span *ngIf="impactoInvalid" class="text-danger">
+                Este campo no puede estar vacío.
+            </span>
+        </div>
+
+            <div class="form-group col-md-5">
+                <label for="inputPassword4">Estado final*</label>
+                <select class="form-select" aria-label="Default select example" formControlName="estado"
+                    class="form-control" [class.is-invalid]="estadoInvalid" (change)="event($event)">
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="implementada">Implementada</option>
+                    <option value="No implementada">No implementada</option>
+                </select>
+                <span *ngIf="estadoInvalid" class="text-danger">
+                    Debes seleccionar un campo
+                </span>
+            </div>
+
+            <ng-container *ngIf="estado!=false" style="width: 40%;">
+
+                <div class="custom-input-file col-md-6 col-sm-6 col-xs-6" accept=".csv, .xls,.xslx">
+                    <label for="" style="margin-right: 5%;">Adjuntar documento de ROI</label>
+                    <input type="file" id="fichero-tarifas" class="input-file" value="" (change)="subirArchivo($event)">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white"
+                        class="bi bi-cloud-arrow-up-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2z" />
+                    </svg>
+                </div>
+
+
+                <button style="margin-left: 2%; width: 46%;" class="btn btn-primary">
+                    <h6>Descargar documento de ROI</h6>
+                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 4%;" width="30" height="30" fill="white"
+                        class="bi bi-download" viewBox="0 0 16 16">
+                        <path
+                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                        <path
+                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                    </svg>
+                </button>
+            </ng-container>
+        </div>
+
+
+        <div class="row">
+            <label for="exampleFormControlTextarea1">Evidencia o registros</label>
+            <textarea class="form-control" formControlName="evidencia" rows="2" style="margin-bottom: 5%;"></textarea>
+
+            <label for="exampleFormControlTextarea1">Observaciones</label>
+            <textarea class="form-control" formControlName="observaciones" rows="2"
+                style="margin-bottom: 5%;"></textarea>
+        </div>
+
+
+
+        <div class="button">
+            <button type="submit" class="btn btn-success" style="background: rgb(59, 201, 59)">
+                <h5>Guardar datos</h5>
+            </button>
+        </div>
+    </form>
+    <hr style="margin-bottom: 5%;">
+
+</div>

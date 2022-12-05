@@ -1,0 +1,79 @@
+*{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container{
+    margin-top: 5%;
+}
+
+label{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 15%;
+}
+h1{
+    color: white;
+    text-align: center;
+}
+h2{
+    color: rgb(67, 66, 66);
+
+}
+textarea{
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 7%;
+    width: 85%;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(52, 50, 50) 
+}
+
+.button{
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+}
+
+.btn-success{
+    margin-top: 4%;
+    width: 20rem;
+    padding: 5px 5px;
+}
+input{
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52) 
+}
+select{
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52) 
+}
+table{
+    text-align: center;
+    width: 90%;
+}
+.card{
+    margin-bottom: 4%;
+    padding: .3rem 1rem;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52) 
+}
+
+.personalizar{
+    width: 90%;
+    height: 90%;
+    text-align: center;
+}
+
+.btn-danger{
+    margin-left: 80%;
+    margin-bottom: 3%;
+    width: 7rem;
+}

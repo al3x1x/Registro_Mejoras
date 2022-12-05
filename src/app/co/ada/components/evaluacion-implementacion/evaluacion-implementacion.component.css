@@ -1,0 +1,105 @@
+*{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container{
+    margin-top: 5%;
+}
+
+label{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 15%;
+}
+h1{
+    color: white;
+    text-align: center;
+}
+textarea{
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: auto;
+    width: 80%;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(52, 50, 50) 
+
+}
+.form-group{
+    margin-bottom: 5%;
+}
+
+.button{
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+}
+
+.btn-success{
+    margin-top: 4%;
+    width: 20rem;
+    padding: 5px 5px;
+}
+input{
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52) 
+}
+select{
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52) 
+}
+table{
+    text-align: center;
+    width: 60%;
+}
+.card{
+    width: 65%;
+    margin-bottom: 4%;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52) 
+}
+
+
+input[type=file]::file-selector-button {
+    border: 2px solid #4739b5;
+    padding: .2em .4em;
+    border-radius: .2em;
+    background-color: #5379f6;
+    transition: 1s;
+    color: whitesmoke;
+  }
+
+  .custom-input-file {
+    background-color: #51be26;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 0;
+    min-height: 15px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    border-radius: .5rem;
+  }
+  
+  .custom-input-file .input-file {
+   border: 10000px solid transparent;
+   cursor: pointer;
+   font-size: 10000px;
+   margin: 0;
+   opacity: 0;
+   outline: 0 none;
+   padding: 0;
+   position: absolute;
+   right: -1000px;
+   top: -1000px;
+  }

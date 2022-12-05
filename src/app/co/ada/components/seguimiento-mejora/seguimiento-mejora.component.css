@@ -1,0 +1,137 @@
+*{
+    margin-left: auto;
+    margin-right: auto;
+}
+h5{
+    color: rgb(66, 66, 66);
+    text-align: center;
+
+}
+
+.container{
+    margin-top: 2%;
+}
+
+label{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 7%;
+}
+h1{
+    color: white;
+    text-align: center;
+}
+textarea{
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(52, 50, 50) 
+
+
+}
+
+.button{
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+}
+
+
+.btn-success{
+    margin-top: 4%;
+    width: 20rem;
+    padding: 5px 5px;
+}
+
+.th{
+    color: rgb(42, 42, 46);
+}
+
+.th2{
+    color: rgb(90, 90, 95);
+    font-size: 0.9rem;
+}
+
+
+h3{
+    text-align: center;
+}
+.row{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: grey;
+    padding-bottom: 2%;
+}
+
+.btn-success{
+    background-color: #32c42d;
+    width: 15rem;
+    height: 2.4rem;
+    padding-bottom: 2.3rem;
+    color: white;
+}
+.btn-success:hover{
+    background-color: #2b9f1c;
+}
+
+.btn-danger{
+    margin-left: 83%;
+    margin-top: -3%;
+    width: 5rem;
+}
+
+input{
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52) 
+}
+select{
+    text-align: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 2px 2px 2px grey;
+    border-color: grey;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+}
+.table{
+    text-align: center;
+    width: 100%;
+    
+}
+
+.div{
+    display: flex;
+}
+
+.icon{
+    margin-left: 240%;
+    padding-bottom: 2%;
+}
+
+.card{
+    padding: 2rem;
+    width: 90%;
+    margin-bottom: 4%;
+    box-shadow: 4px 4px 4px rgb(68, 68, 69);
+    border-color: rgb(54, 52, 52); 
+}
+
+.check{
+    margin-left: 90%;
+}
+
+
+
+.boton{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+select:hover{
+    cursor: pointer;
+}
